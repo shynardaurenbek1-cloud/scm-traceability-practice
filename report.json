@@ -1,0 +1,40 @@
+{
+  "traceability": [],
+  "processes": [
+    {
+      "process": "Identification",
+      "rule": "SCMP §1",
+      "function": "register",
+      "test": "test_register",
+      "status": "implemented"
+    },
+    {
+      "process": "Change control",
+      "rule": "SCMP §2",
+      "function": "decide/apply",
+      "test": "test_unapproved",
+      "status": "implemented"
+    },
+    {
+      "process": "Status accounting",
+      "rule": "SCMP §3",
+      "function": "report",
+      "test": "test_report",
+      "status": "implemented"
+    },
+    {
+      "process": "Audit",
+      "rule": "SCMP §4",
+      "function": "audit",
+      "test": "test_audit",
+      "status": "partial"
+    },
+    {
+      "process": "Release",
+      "rule": "SCMP §5",
+      "function": "baseline/link",
+      "test": "test_link",
+      "status": "partial"
+    }
+  ]
+}

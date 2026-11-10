@@ -2,7 +2,7 @@ import argparse
 import hashlib
 import json
 import sqlite3
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 
@@ -40,7 +40,7 @@ class Traceability:
 
     def baseline(self,id):
         items=[dict(row) for row in self.conn.execute('SELECT * FROM items ORDER BY id')]
-        self.conn.execute('INSERT INTO baselines VALUES(?,?,?)',(id,datetime.now(timezone.utc).isoformat(),json.dumps(items)))
+        self.conn.execute('INSERT INTO baselines VALUES(?,?,?)',(id,datetime.now(UTC).isoformat(),json.dumps(items)))
         self.conn.commit();return items
 
     def link(self,request_id,baseline_id):
