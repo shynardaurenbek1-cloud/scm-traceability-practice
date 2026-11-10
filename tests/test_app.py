@@ -1,5 +1,8 @@
+import sqlite3
 import pytest
+
 from app import Traceability
+
 
 @pytest.fixture
 def t(tmp_path):return Traceability(tmp_path/'db.sqlite3')
@@ -23,7 +26,8 @@ def test_baseline(t,sample):
     t.register('CI-1',sample,'1.0.0');assert t.baseline('BL-1')[0]['id']=='CI-1'
 def test_immutable(t):
     t.baseline('BL-1')
-    with pytest.raises(Exception):t.baseline('BL-1')
+    with pytest.raises(sqlite3.IntegrityError):
+        t.baseline('BL-1')
 def test_audit(t,sample):
     t.register('CI-1',sample,'1.0.0');t.baseline('BL-1');assert t.audit('BL-1')[0]['valid']
 def test_audit_detect(t,sample):
